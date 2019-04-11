@@ -12,12 +12,26 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-      
+       startbtn:cc.Node,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+
+        var scaleTo = cc.scaleTo(0.8,0.9);
+        var reverse = cc.scaleTo(0.8,1);
+        var seq = cc.sequence(scaleTo,reverse);
+        var repeat = cc.repeatForever(seq);
+        this.startbtn.runAction(repeat);
+      
+      this.startbtn.on(cc.Node.EventType.TOUCH_START,function(){
+
+        cc.director.loadScene("MainScene");
+      })
+
+    },
 
     start () {
 
